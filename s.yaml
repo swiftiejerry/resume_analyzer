@@ -10,9 +10,10 @@ resources:
     component: fc3
     props:
       region: ${vars.region}
-      functionName: resume-analyzer-api
+      functionName: resume-analyzer-api-v3
       description: "AI Resume Analyzer API deployed with Serverless Devs"
       runtime: custom.debian10
+      logConfig: auto
       code: ./
       handler: main.app
       timeout: 120
@@ -37,7 +38,7 @@ resources:
               - OPTIONS
       customRuntimeConfig:
         command:
-          - python
+          - python3
           - "-m"
           - uvicorn
           - "main:app"

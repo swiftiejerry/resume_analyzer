@@ -3,7 +3,7 @@ import json
 from typing import Optional
 
 class RedisService:
-    def __init__(self, host: str, port: int, db: int, password: str | None = None):
+    def __init__(self, host: str, port: int, db: int, password: Optional[str] = None):
         self.memory_cache = {}
         self.client = None
         try:

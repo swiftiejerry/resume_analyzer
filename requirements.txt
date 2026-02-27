@@ -1,10 +1,9 @@
-fastapi
-uvicorn[standard]
+fastapi==0.95.2
+uvicorn[standard]==0.20.0
 pdfplumber
 dashscope
 redis
 python-multipart
-pydantic
-pydantic-settings
+pydantic==1.10.18
 python-dotenv
-PyMuPDF
+PyMuPDF==1.22.5

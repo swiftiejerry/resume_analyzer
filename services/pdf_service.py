@@ -2,6 +2,7 @@ import pdfplumber
 import fitz  # PyMuPDF
 import io
 import base64
+from typing import List
 
 class PDFService:
     @staticmethod
@@ -75,7 +76,7 @@ class PDFService:
             return False
 
     @staticmethod
-    def pdf_pages_to_base64_images(file_bytes: bytes, dpi: int = 200) -> list[str]:
+    def pdf_pages_to_base64_images(file_bytes: bytes, dpi: int = 200) -> List[str]:
         """
         Convert PDF pages to base64-encoded PNG images.
         Used for image-based PDFs that need OCR/vision AI processing.

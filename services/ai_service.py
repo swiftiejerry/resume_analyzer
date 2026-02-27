@@ -1,5 +1,6 @@
 import json
 import dashscope
+from typing import List
 from dashscope import Generation
 from models.resume import ResumeData, BasicInfo, MatchResult
 
@@ -101,7 +102,7 @@ class AIService:
             raise Exception(f"DashScope API failed with status {response.status_code}: {response.code} - {response.message}")
 
     @staticmethod
-    def extract_resume_info_from_images(page_images_b64: list[str], api_key: str) -> ResumeData:
+    def extract_resume_info_from_images(page_images_b64: List[str], api_key: str) -> ResumeData:
         """
         Calls DashScope multimodal vision API to extract resume info from PDF page images.
         Used for image-based/vector-drawn PDFs where text extraction fails.

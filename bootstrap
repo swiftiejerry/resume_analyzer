@@ -1,0 +1,16 @@
+#!/bin/bash
+# Aliyun FC Custom Runtime Bootstrap Script
+
+echo "Starting bootstrap script..."
+export PYTHONPATH=/code
+
+# Configure python package directory path
+export PATH=/code/.s/python/bin:$PATH
+export PYTHONPATH=/code/.s/python:$PYTHONPATH
+
+# Ensure dependencies are installed (Aliyun FC specific pathing)
+pip install -r requirements.txt -t .s/python
+
+# Start the FastAPI server
+echo "Starting Uvicorn server..."
+python -m uvicorn main:app --host 0.0.0.0 --port 9000
