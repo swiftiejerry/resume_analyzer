@@ -1,0 +1,47 @@
+edition: 3.0.0
+name: resume-analyzer-app
+access: default
+
+vars:
+  region: "cn-hangzhou"
+
+resources:
+  fastapi-service:
+    component: fc3
+    props:
+      region: ${vars.region}
+      functionName: resume-analyzer-api
+      description: "AI Resume Analyzer API deployed with Serverless Devs"
+      runtime: python3.10
+      code: ./
+      handler: main.app
+      timeout: 120
+      memorySize: 1024
+      environmentVariables:
+        DASHSCOPE_API_KEY: "your_dashscope_api_key_here" # Replace in Aliyun FC Console
+        REDIS_HOST: "your_redis_host_here" # Replace in Aliyun FC Console
+        REDIS_PORT: "6379" # Replace if different
+        REDIS_DB: "0" # Replace if different
+        REDIS_PASSWORD: "your_redis_password_here" # Replace if using external Redis
+      triggers:
+        - triggerName: httpTrigger
+          triggerType: http
+          triggerConfig:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+              - OPTIONS
+      customRuntimeConfig:
+        command:
+          - python
+          - "-m"
+          - uvicorn
+          - "main:app"
+          - "--host"
+          - "0.0.0.0"
+          - "--port"
+          - "9000"
