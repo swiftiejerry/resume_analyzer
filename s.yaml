@@ -12,7 +12,7 @@ resources:
       region: ${vars.region}
       functionName: resume-analyzer-api
       description: "AI Resume Analyzer API deployed with Serverless Devs"
-      runtime: python3.10
+      runtime: custom.debian10
       code: ./
       handler: main.app
       timeout: 120
